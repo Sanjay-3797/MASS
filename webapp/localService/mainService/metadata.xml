@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_CAPABILITIES',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Capabilities.V1" Alias="Capabilities"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_AGGREGATION',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="Org.OData.Aggregation.V1" Alias="Aggregation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="./sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='LOCAL')/$value" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZP_QU_DG_CONFGREQ_CDS" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="ZI_QU_DG_CONFIGREQSTEPVHType" sap:label="Value Help for Step" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="valpos"/>
+                </Key>
+                <Property Name="valpos" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Value key" sap:quickinfo="Domain value key"/>
+                <Property Name="DomvalueL" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Lower Value" sap:quickinfo="Values for Domains: Single Value / Upper Limit"/>
+                <Property Name="Ddtext" Type="Edm.String" MaxLength="60" sap:label="Short Descript." sap:quickinfo="Short Text for Fixed Values"/>
+            </EntityType>
+            <EntityType Name="ZI_QU_DG_CONFIGREQVHType" sap:label="Value Help for the Request Type" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Valpos"/>
+                </Key>
+                <Property Name="Valpos" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="NonNegative" sap:label="Value key" sap:quickinfo="Domain value key"/>
+                <Property Name="DomvalueL" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:label="Lower Value" sap:quickinfo="Values for Domains: Single Value / Upper Limit"/>
+            </EntityType>
+            <EntityType Name="ZP_QU_DG_CONFGFLDType" sap:label="Projection view for Field Configuration" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Configid"/>
+                    <PropertyRef Name="Viewid"/>
+                    <PropertyRef Name="Fldname"/>
+                </Key>
+                <Property Name="Descrip_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fldname_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Viewid_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Configid" Type="Edm.Guid" Nullable="false" sap:display-format="UpperCase" sap:label="UUID" sap:quickinfo="16 Byte UUID in 32 Characters (Hexadecimal Encoded)"/>
+                <Property Name="Viewid" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:field-control="Viewid_fc" sap:label="View ID"/>
+                <Property Name="Fldname" Type="Edm.String" Nullable="false" MaxLength="30" sap:display-format="UpperCase" sap:field-control="Fldname_fc" sap:label="Field Name"/>
+                <Property Name="Descrip" Type="Edm.String" MaxLength="70" sap:display-format="UpperCase" sap:field-control="Descrip_fc" sap:label="Description"/>
+                <Property Name="Mandatory" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Truth Value" sap:quickinfo="Truth Value: True/False"/>
+                <Property Name="Hidden" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Truth Value" sap:quickinfo="Truth Value: True/False"/>
+                <Property Name="Readonly" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Truth Value" sap:quickinfo="Truth Value: True/False"/>
+                <Property Name="Optional" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="Truth Value" sap:quickinfo="Truth Value: True/False"/>
+                <Property Name="CreatedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created by" sap:quickinfo="Name of Person who Created the Object"/>
+                <Property Name="CreatedDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created on" sap:quickinfo="Date on which the record was created"/>
+                <Property Name="ChangedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed by" sap:quickinfo="Name of person who changed object"/>
+                <Property Name="ChangedDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On" sap:quickinfo="Date of Last Change"/>
+                <NavigationProperty Name="to_confgreq" Relationship="ZP_QU_DG_CONFGREQ_CDS.assoc_7F4279B08B76F2E4FF5065A457E4845C" FromRole="FromRole_assoc_7F4279B08B76F2E4FF5065A457E4845C" ToRole="ToRole_assoc_7F4279B08B76F2E4FF5065A457E4845C"/>
+                <NavigationProperty Name="to_confgview" Relationship="ZP_QU_DG_CONFGREQ_CDS.assoc_BEF3400776DF142F189094DADB40E640" FromRole="FromRole_assoc_BEF3400776DF142F189094DADB40E640" ToRole="ToRole_assoc_BEF3400776DF142F189094DADB40E640"/>
+            </EntityType>
+            <EntityType Name="ZP_QU_DG_CONFGREQType" sap:label="Projection view for Configuration Req" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Configid"/>
+                </Key>
+                <Property Name="Configname_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mattype_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RequestType_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Step_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Configid" Type="Edm.Guid" Nullable="false" sap:display-format="UpperCase" sap:label="UUID" sap:quickinfo="16 Byte UUID in 32 Characters (Hexadecimal Encoded)"/>
+                <Property Name="Mattype" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:field-control="Mattype_fc" sap:label="Material type" sap:value-list="standard"/>
+                <Property Name="Step" Type="Edm.String" MaxLength="2" sap:display-format="UpperCase" sap:field-control="Step_fc" sap:label="Steps" sap:value-list="standard"/>
+                <Property Name="Configname" Type="Edm.String" MaxLength="40" sap:field-control="Configname_fc" sap:label="Configuration Name"/>
+                <Property Name="RequestType" Type="Edm.String" MaxLength="10" sap:display-format="UpperCase" sap:field-control="RequestType_fc" sap:label="Request Type" sap:value-list="standard"/>
+                <Property Name="CreatedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created by" sap:quickinfo="Name of Person who Created the Object"/>
+                <Property Name="CreatedDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created on" sap:quickinfo="Date on which the record was created"/>
+                <Property Name="ChangedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed by" sap:quickinfo="Name of person who changed object"/>
+                <Property Name="ChangedDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On" sap:quickinfo="Date of Last Change"/>
+                <NavigationProperty Name="to_confgview" Relationship="ZP_QU_DG_CONFGREQ_CDS.assoc_63C3F1A6C66EF77D0B20CE40CFF439B1" FromRole="FromRole_assoc_63C3F1A6C66EF77D0B20CE40CFF439B1" ToRole="ToRole_assoc_63C3F1A6C66EF77D0B20CE40CFF439B1"/>
+            </EntityType>
+            <EntityType Name="ZP_QU_DG_CONFGVIEWType" sap:label="Consumption View for View Configuration" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Configid"/>
+                    <PropertyRef Name="Viewid"/>
+                </Key>
+                <Property Name="Descrip_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Editable_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Hidden_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Readonly_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Viewid_fc" Type="Edm.Byte" sap:label="Dyn. Field Control" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Configid" Type="Edm.Guid" Nullable="false" sap:display-format="UpperCase" sap:label="UUID" sap:quickinfo="16 Byte UUID in 32 Characters (Hexadecimal Encoded)"/>
+                <Property Name="Viewid" Type="Edm.String" Nullable="false" MaxLength="1" sap:display-format="UpperCase" sap:field-control="Viewid_fc" sap:label="View ID"/>
+                <Property Name="Descrip" Type="Edm.String" MaxLength="70" sap:display-format="UpperCase" sap:field-control="Descrip_fc" sap:label="Description"/>
+                <Property Name="Editable" Type="Edm.Boolean" sap:display-format="UpperCase" sap:field-control="Editable_fc" sap:label="Truth Value" sap:quickinfo="Truth Value: True/False"/>
+                <Property Name="Hidden" Type="Edm.Boolean" sap:display-format="UpperCase" sap:field-control="Hidden_fc" sap:label="Truth Value" sap:quickinfo="Truth Value: True/False"/>
+                <Property Name="Readonly" Type="Edm.Boolean" sap:display-format="UpperCase" sap:field-control="Readonly_fc" sap:label="Truth Value" sap:quickinfo="Truth Value: True/False"/>
+                <Property Name="CreatedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Created by" sap:quickinfo="Name of Person who Created the Object"/>
+                <Property Name="CreatedDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Created on" sap:quickinfo="Date on which the record was created"/>
+                <Property Name="ChangedBy" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed by" sap:quickinfo="Name of person who changed object"/>
+                <Property Name="ChangedDate" Type="Edm.DateTime" Precision="0" sap:display-format="Date" sap:label="Changed On" sap:quickinfo="Date of Last Change"/>
+                <NavigationProperty Name="to_confgfld" Relationship="ZP_QU_DG_CONFGREQ_CDS.assoc_0980E844524DE642BA73FC31C738AFAD" FromRole="FromRole_assoc_0980E844524DE642BA73FC31C738AFAD" ToRole="ToRole_assoc_0980E844524DE642BA73FC31C738AFAD"/>
+                <NavigationProperty Name="to_confgreq" Relationship="ZP_QU_DG_CONFGREQ_CDS.assoc_DFBA59673E89FED81EE55345A9053FF1" FromRole="FromRole_assoc_DFBA59673E89FED81EE55345A9053FF1" ToRole="ToRole_assoc_DFBA59673E89FED81EE55345A9053FF1"/>
+            </EntityType>
+            <EntityType Name="ZQU_DG_MTART_VHType" sap:label="Value Help for Material Type" sap:value-list="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Mtart"/>
+                </Key>
+                <Property Name="Mtart" Type="Edm.String" Nullable="false" MaxLength="4" sap:display-format="UpperCase" sap:label="Material Type" sap:quickinfo="Material type"/>
+                <Property Name="Mtbez" Type="Edm.String" MaxLength="25" sap:label="Description" sap:quickinfo="Description of Material Type"/>
+            </EntityType>
+            <Association Name="assoc_BEF3400776DF142F189094DADB40E640" sap:content-version="1">
+                <End Type="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGFLDType" Multiplicity="1" Role="FromRole_assoc_BEF3400776DF142F189094DADB40E640"/>
+                <End Type="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGVIEWType" Multiplicity="1" Role="ToRole_assoc_BEF3400776DF142F189094DADB40E640"/>
+            </Association>
+            <Association Name="assoc_7F4279B08B76F2E4FF5065A457E4845C" sap:content-version="1">
+                <End Type="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGFLDType" Multiplicity="1" Role="FromRole_assoc_7F4279B08B76F2E4FF5065A457E4845C"/>
+                <End Type="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType" Multiplicity="0..1" Role="ToRole_assoc_7F4279B08B76F2E4FF5065A457E4845C"/>
+            </Association>
+            <Association Name="assoc_0980E844524DE642BA73FC31C738AFAD" sap:content-version="1">
+                <End Type="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGVIEWType" Multiplicity="1" Role="FromRole_assoc_0980E844524DE642BA73FC31C738AFAD">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGFLDType" Multiplicity="*" Role="ToRole_assoc_0980E844524DE642BA73FC31C738AFAD"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_0980E844524DE642BA73FC31C738AFAD">
+                        <PropertyRef Name="Configid"/>
+                        <PropertyRef Name="Viewid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_0980E844524DE642BA73FC31C738AFAD">
+                        <PropertyRef Name="Configid"/>
+                        <PropertyRef Name="Viewid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="assoc_DFBA59673E89FED81EE55345A9053FF1" sap:content-version="1">
+                <End Type="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGVIEWType" Multiplicity="1" Role="FromRole_assoc_DFBA59673E89FED81EE55345A9053FF1"/>
+                <End Type="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType" Multiplicity="1" Role="ToRole_assoc_DFBA59673E89FED81EE55345A9053FF1"/>
+            </Association>
+            <Association Name="assoc_63C3F1A6C66EF77D0B20CE40CFF439B1" sap:content-version="1">
+                <End Type="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType" Multiplicity="1" Role="FromRole_assoc_63C3F1A6C66EF77D0B20CE40CFF439B1">
+                    <OnDelete Action="Cascade"/>
+                </End>
+                <End Type="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGVIEWType" Multiplicity="*" Role="ToRole_assoc_63C3F1A6C66EF77D0B20CE40CFF439B1"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_assoc_63C3F1A6C66EF77D0B20CE40CFF439B1">
+                        <PropertyRef Name="Configid"/>
+                    </Principal>
+                    <Dependent Role="ToRole_assoc_63C3F1A6C66EF77D0B20CE40CFF439B1">
+                        <PropertyRef Name="Configid"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZP_QU_DG_CONFGREQ_CDS_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="ZI_QU_DG_CONFIGREQSTEPVH" EntityType="ZP_QU_DG_CONFGREQ_CDS.ZI_QU_DG_CONFIGREQSTEPVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZI_QU_DG_CONFIGREQVH" EntityType="ZP_QU_DG_CONFGREQ_CDS.ZI_QU_DG_CONFIGREQVHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZP_QU_DG_CONFGFLD" EntityType="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGFLDType" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZP_QU_DG_CONFGREQ" EntityType="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType" sap:content-version="1"/>
+                <EntitySet Name="ZP_QU_DG_CONFGVIEW" EntityType="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGVIEWType" sap:creatable="false" sap:deletable="false" sap:content-version="1"/>
+                <EntitySet Name="ZQU_DG_MTART_VH" EntityType="ZP_QU_DG_CONFGREQ_CDS.ZQU_DG_MTART_VHType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
+                <AssociationSet Name="assoc_BEF3400776DF142F189094DADB40E640" Association="ZP_QU_DG_CONFGREQ_CDS.assoc_BEF3400776DF142F189094DADB40E640" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZP_QU_DG_CONFGFLD" Role="FromRole_assoc_BEF3400776DF142F189094DADB40E640"/>
+                    <End EntitySet="ZP_QU_DG_CONFGVIEW" Role="ToRole_assoc_BEF3400776DF142F189094DADB40E640"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_7F4279B08B76F2E4FF5065A457E4845C" Association="ZP_QU_DG_CONFGREQ_CDS.assoc_7F4279B08B76F2E4FF5065A457E4845C" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZP_QU_DG_CONFGFLD" Role="FromRole_assoc_7F4279B08B76F2E4FF5065A457E4845C"/>
+                    <End EntitySet="ZP_QU_DG_CONFGREQ" Role="ToRole_assoc_7F4279B08B76F2E4FF5065A457E4845C"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_63C3F1A6C66EF77D0B20CE40CFF439B1" Association="ZP_QU_DG_CONFGREQ_CDS.assoc_63C3F1A6C66EF77D0B20CE40CFF439B1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZP_QU_DG_CONFGREQ" Role="FromRole_assoc_63C3F1A6C66EF77D0B20CE40CFF439B1"/>
+                    <End EntitySet="ZP_QU_DG_CONFGVIEW" Role="ToRole_assoc_63C3F1A6C66EF77D0B20CE40CFF439B1"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_DFBA59673E89FED81EE55345A9053FF1" Association="ZP_QU_DG_CONFGREQ_CDS.assoc_DFBA59673E89FED81EE55345A9053FF1" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZP_QU_DG_CONFGVIEW" Role="FromRole_assoc_DFBA59673E89FED81EE55345A9053FF1"/>
+                    <End EntitySet="ZP_QU_DG_CONFGREQ" Role="ToRole_assoc_DFBA59673E89FED81EE55345A9053FF1"/>
+                </AssociationSet>
+                <AssociationSet Name="assoc_0980E844524DE642BA73FC31C738AFAD" Association="ZP_QU_DG_CONFGREQ_CDS.assoc_0980E844524DE642BA73FC31C738AFAD" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ZP_QU_DG_CONFGVIEW" Role="FromRole_assoc_0980E844524DE642BA73FC31C738AFAD"/>
+                    <End EntitySet="ZP_QU_DG_CONFGFLD" Role="ToRole_assoc_0980E844524DE642BA73FC31C738AFAD"/>
+                </AssociationSet>
+            </EntityContainer>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType/Mattype" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value Help for Material Type"/>
+                        <PropertyValue Property="CollectionPath" String="ZQU_DG_MTART_VH"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Mattype"/>
+                                    <PropertyValue Property="ValueListProperty" String="Mtart"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Mtbez"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType/Step" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value Help for Step"/>
+                        <PropertyValue Property="CollectionPath" String="ZI_QU_DG_CONFIGREQSTEPVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="Step"/>
+                                    <PropertyValue Property="ValueListProperty" String="DomvalueL"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="valpos"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Ddtext"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType/RequestType" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Common.ValueList">
+                    <Record>
+                        <PropertyValue Property="Label" String="Value Help for the Request Type"/>
+                        <PropertyValue Property="CollectionPath" String="ZI_QU_DG_CONFIGREQVH"/>
+                        <PropertyValue Property="SearchSupported" Bool="false"/>
+                        <PropertyValue Property="Parameters">
+                            <Collection>
+                                <Record Type="Common.ValueListParameterInOut">
+                                    <PropertyValue Property="LocalDataProperty" PropertyPath="RequestType"/>
+                                    <PropertyValue Property="ValueListProperty" String="DomvalueL"/>
+                                </Record>
+                                <Record Type="Common.ValueListParameterDisplayOnly">
+                                    <PropertyValue Property="ValueListProperty" String="Valpos"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQ_CDS_Entities" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Aggregation.ApplySupported">
+                    <Record>
+                        <PropertyValue Property="Transformations">
+                            <Collection>
+                                <String>aggregate</String>
+                                <String>groupby</String>
+                                <String>filter</String>
+                            </Collection>
+                        </PropertyValue>
+                        <PropertyValue Property="Rollup" EnumMember="None"/>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQ_CDS_Entities/ZP_QU_DG_CONFGFLD" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>Descrip_fc</PropertyPath>
+                                <PropertyPath>Fldname_fc</PropertyPath>
+                                <PropertyPath>Viewid_fc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Descrip_fc</PropertyPath>
+                                <PropertyPath>Fldname_fc</PropertyPath>
+                                <PropertyPath>Viewid_fc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQ_CDS_Entities/ZP_QU_DG_CONFGREQ" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>Configname_fc</PropertyPath>
+                                <PropertyPath>Mattype_fc</PropertyPath>
+                                <PropertyPath>RequestType_fc</PropertyPath>
+                                <PropertyPath>Step_fc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Configname_fc</PropertyPath>
+                                <PropertyPath>Mattype_fc</PropertyPath>
+                                <PropertyPath>RequestType_fc</PropertyPath>
+                                <PropertyPath>Step_fc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQ_CDS_Entities/ZP_QU_DG_CONFGVIEW" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+                <Annotation Term="Capabilities.FilterRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonFilterableProperties">
+                            <Collection>
+                                <PropertyPath>Descrip_fc</PropertyPath>
+                                <PropertyPath>Editable_fc</PropertyPath>
+                                <PropertyPath>Hidden_fc</PropertyPath>
+                                <PropertyPath>Readonly_fc</PropertyPath>
+                                <PropertyPath>Viewid_fc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="Capabilities.SortRestrictions">
+                    <Record>
+                        <PropertyValue Property="NonSortableProperties">
+                            <Collection>
+                                <PropertyPath>Descrip_fc</PropertyPath>
+                                <PropertyPath>Editable_fc</PropertyPath>
+                                <PropertyPath>Hidden_fc</PropertyPath>
+                                <PropertyPath>Readonly_fc</PropertyPath>
+                                <PropertyPath>Viewid_fc</PropertyPath>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+            </Annotations>
+            <atom:link rel="self" href="http://103.194.234.38:8010/sap/opu/odata/sap/ZP_QU_DG_CONFGREQ_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://103.194.234.38:8010/sap/opu/odata/sap/ZP_QU_DG_CONFGREQ_CDS/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

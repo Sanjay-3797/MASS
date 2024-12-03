@@ -1,0 +1,67 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: com.worksheet.worksheet
+type: application
+server:
+  customMiddleware:
+    - name: fiori-tools-proxy
+      afterMiddleware: compression
+      configuration:
+        ignoreCertError: false # If set to true, certificate errors will be ignored. E.g. self-signed certificates will be accepted
+        ui5:
+          path:
+            - /resources
+            - /test-resources
+          url: https://ui5.sap.com
+        backend:
+          - path: /sap
+            url: http://103.194.234.17:8010
+            client: '200'
+            destination: AIRDIT_HANA_S4P
+          - path: /sap
+            url: http://103.194.234.17:8010
+            client: '200'
+            destination: AIRDIT_HANA_S4P
+          - path: /sap/opu/odata/sap/ZC_QU_DG_MATERIALREQUESTS_CDS
+            url: http://103.194.234.17:8010
+            client: '200'
+            destination: AIRDIT_HANA_S4P
+          - path: /sap/bc/ui5_ui5/sap
+            url: http://103.194.234.17:8010
+            client: '200'
+            destination: AIRDIT_HANA_S4P
+          - path: /sap/opu/odata/sap/ZP_QU_DG_CONFGREQ_CDS
+            url: http://103.194.234.17:8010
+            client: '200'
+            destination: AIRDIT_HANA_S4P
+          - path: /sap/opu/odata/sap/ZQU_DG_MATERIAL_MASS_UPLOAD_SRV
+            url: http://airdithanaprd.airditsoftware.com:8010
+            client: '200'
+            destination: AIRDIT_HANA_S4P
+          - path: /sap/opu/odata/sap/ZC_QUDG_MATERIALMASSUPLOAD_CDS
+            url: http://airdithanaprd.airditsoftware.com:8010
+            client: '200'
+            destination: AIRDIT_HANA_S4P
+          - path: /sap/opu/odata/sap/ZQU_DG_MAT_MASS_UPLOAD_SRV
+            url: http://103.194.234.17:8010
+            client: '200'
+            destination: AIRDIT_HANA_S4P
+            authenticationType: BasicAuthentication
+          - path: /sap/opu/odata/sap/ZP_QU_DG_MARA_MASSREQ_BND
+            url: http://103.194.234.17:8010
+            client: '200'
+            destination: AIRDIT_HANA_S4P
+            authenticationType: BasicAuthentication
+    - name: fiori-tools-appreload
+      afterMiddleware: compression
+      configuration:
+        port: 35729
+        path: webapp
+        delay: 300
+    - name: fiori-tools-preview
+      afterMiddleware: fiori-tools-appreload
+      configuration:
+        component: com.worksheet.worksheet
+        ui5Theme: sap_horizon

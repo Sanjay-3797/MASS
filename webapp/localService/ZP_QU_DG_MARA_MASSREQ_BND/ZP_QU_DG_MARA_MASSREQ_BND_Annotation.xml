@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_PERSONALDATA',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.PersonalData.v1" Alias="PersonalData"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_VALIDATION',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="Org.OData.Validation.V1" Alias="Validation"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_ANALYTICS',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Analytics.v1" Alias="Analytics"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_HTML5',Version='0001',SAP__Origin='')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.HTML5.v1" Alias="HTML5"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../../sap/zp_qu_dg_mara_massreq_bnd/$metadata">
+        <edmx:Include Namespace="ZP_QU_DG_MARA_MASSREQ_BND" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="zp_qu_dg_mara_massreq_bnd_van.v1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARA_MASSREQType/Delete_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARA_MASSREQType/Update_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARA_MASSREQType/to_plant_oc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARA_MASSREQType/to_sales_oc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARA_MASSREQType/to_tax_oc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARA_MASSREQType/to_unitofmeasure_oc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARA_MASSREQType/to_valuation_oc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARA_MASSREQType/to_warehouse_oc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARC_MASSREQType/Delete_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARC_MASSREQType/Update_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARC_MASSREQType/to_storageloc_oc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARD_MASSREQType/Delete_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARD_MASSREQType/Update_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARM_MASSREQType/Delete_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARM_MASSREQType/Update_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MBEW_MASSREQType/Delete_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MBEW_MASSREQType/Update_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MLAN_MASSREQType/Delete_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MLAN_MASSREQType/Update_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MLGN_MASSREQType/Delete_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MLGN_MASSREQType/Update_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MLGN_MASSREQType/to_storagetype_oc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MLGT_MASSREQType/Delete_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MLGT_MASSREQType/Update_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MVKE_MASSREQType/Delete_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MVKE_MASSREQType/Update_mc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,280 @@
+<mvc:View
+    height="100%"
+    controllerName="com.worksheet.worksheet.controller.MainPage"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:f="sap.f"
+    xmlns:card="sap.f.cards"
+    xmlns:chart="sap.suite.ui.commons"
+    xmlns:viz="sap.viz.ui5.controls"
+    xmlns:viz.feeds="sap.viz.ui5.controls.common.feeds"
+    xmlns:viz.data="sap.viz.ui5.data"
+    xmlns:smartTable="sap.ui.comp.smarttable"
+    xmlns:layout="sap.ui.layout"
+    xmlns:smartchart="sap.ui.comp.smartchart"
+    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
+>
+    <NavContainer id="wizardNavContainer">
+        <pages>
+            <f:DynamicPage
+                id="dynamicPage"
+                stickySubheaderProvider="ShoppingCartWizard"
+                class="sapUiNoContentPadding"
+                showFooter="true"
+            >
+                <f:title>
+                    <f:DynamicPageTitle>
+                        <f:heading>
+                            <Title text="Material Mass Upload" />
+                        </f:heading>
+                        <f:expandedContent>
+                            <Title
+                                id="idRequest"
+                                text=""
+                            />
+                        </f:expandedContent>
+
+                        <f:actions>
+                            <ProgressIndicator
+                                id="idProgressIndicator"
+                                class="sapUiSmallMargin"
+                                percentValue="0"
+                                displayValue="0%"
+                                showValue="true"
+                                state="Information"
+                                displayOnly="true"
+                                width="30vw"
+                            />
+                        </f:actions>
+                    </f:DynamicPageTitle>
+                </f:title>
+                <f:header>
+                    <f:DynamicPageHeader pinnable="true">
+                        <layout:HorizontalLayout allowWrapping="true">
+                            <layout:VerticalLayout class="sapUiMediumMarginEnd">
+                                <ObjectAttribute
+                                    title="Process Goal"
+                                    text="Mass Uploading"
+                                />
+                            </layout:VerticalLayout>
+                        </layout:HorizontalLayout>
+                    </f:DynamicPageHeader>
+                </f:header>
+                <f:content>
+                    <Wizard
+                        id="idCreateMaterialWizard"
+                        class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
+                        complete="wizardCompletedHandler"
+                        renderMode="Page"
+                    >
+                        <WizardStep
+                            id="idMaterialType"
+                            title="Choose Material Type"
+                            validated="false"
+                        >
+                            <MessageStrip
+                                class="sapUiSmallMarginBottom"
+                                text="Select Material Type to Proceed."
+                                showIcon="true"
+                            />
+                            <VBox
+                                alignItems="Center"
+                                justifyContent="Center"
+                                height="100%"
+                            >
+                                <MultiComboBox
+                                    id="idMultiCombo"
+                                    items="{ZC_QU_DG_MATERIALREQUESTS_CDS>/I_MaterialType}"
+                                    width="20rem"
+                                    required="true"
+                                    placeholder="Select Material Type"
+                                    selectionChange="onChangeMaterialType"
+                                >
+                                    <items>
+                                        <core:ListItem
+                                            text="{path: 'ZC_QU_DG_MATERIALREQUESTS_CDS>MaterialType', formatter: '.formatMaterialType'}"
+                                            key="{ZC_QU_DG_MATERIALREQUESTS_CDS>MaterialType}"
+                                        />
+                                    </items>
+                                </MultiComboBox>
+
+                                <HBox>
+                                    <Button
+                                        text="Edit"
+                                        press="onPressEdit"
+                                        class="sapUiTinyMarginEnd"
+                                        enabled="{buttonModel>/editButton}"
+                                    />
+                                    <Button
+                                        text="Clear"
+                                        type="Default"
+                                        press="onPressClear"
+                                        class="sapUiTinyMarginEnd"
+                                        enabled="{buttonModel>/clearButton}"
+                                    />
+                                    <Button
+                                        text="Submit"
+                                        type="Emphasized"
+                                        press="onPressSubmit"
+                                        class="sapUiTinyMarginEnd"
+                                        enabled="{buttonModel>/submitButton}"
+                                    />
+                                </HBox>
+                            </VBox>
+                        </WizardStep>
+
+                        <WizardStep
+                            id="idUpDoExcel"
+                            title="Upload / Download Excel"
+                            validated="false"
+                        >
+                            <Table
+                                id="idMtype_table"
+                                inset="false"
+                                class='sapUiTinyMarginTop'
+                                items="{MaterialType>/list}"
+                                growing="true"
+                                growingThreshold="5"
+                            >
+                                <columns>
+                                    <Column width="14rem">
+                                        <Text text="Material Type" />
+                                    </Column>
+                                    <Column width="10rem">
+                                        <Text text="Download" />
+                                    </Column>
+                                    <Column width="10rem">
+                                        <Text text="Upload" />
+                                    </Column>
+                                </columns>
+                                <items>
+                                    <ColumnListItem
+                                        type="Active"
+                                        press="onGetid"
+                                    >
+                                        <cells>
+                                            <ObjectIdentifier
+                                                title="{MaterialType>mType}"
+                                            />
+                                            <Button
+                                                type="Emphasized"
+                                                press="onExport"
+                                                icon="sap-icon://download"
+                                            />
+                                            <u:FileUploader
+                                                fileType="xlsx"
+                                                sendXHR="true"
+                                                name="myFileUpload"
+                                                buttonText="Browse"
+                                                useMultipart="false"
+                                                placeholder="Choose a file..."
+                                                tooltip="Upload your file to the local server"
+                                                uploadComplete="handleUploadComplete"
+                                                enabled="{buttonModel>/docSubmitButton}"
+                                            />
+                                        </cells>
+                                    </ColumnListItem>
+                                </items>
+                            </Table>
+                            <VBox
+                                justifyContent="End"
+                                alignItems="End"
+                                class="sapUiMediumMarginTop"
+                            >
+                                <Button
+                                    press="onSubmitExcel"
+                                    type="Emphasized"
+                                    text='Submit'
+                                    enabled="{buttonModel>/docSubmitButton}"
+                                />
+                            </VBox>
+                        </WizardStep>
+
+                        <WizardStep
+                            id="idOverview"
+                            title="Overview"
+                            validated="false"
+                        >
+                            <VBox fitContainer="true">
+                                <HBox
+                                    fitContainer="true"
+                                    class="sapUiMediumMargin"
+                                >
+                                    <!-- <Text text="Counts.........." /> -->
+
+                                    <smartchart:SmartChart
+                                        id="smartErrorChart"
+                                        enableAutoBinding="false"
+                                        entitySet="ZP_QU_DG_MARA_MASSREQ"
+                                        header=""
+                                        showFullScreenButton="true"
+                                        selectionMode="Multi"
+                                        showChartTooltip="true"
+                                        showDrillBreadcrumbs="false"
+                                        showDetailsButton="false"
+                                        showDrillButtons="true"
+                                        showSemanticNavigationButton="true"
+                                        height="40vh"
+                                        beforeRebindChart="onBeforeRebindChart"
+                                    />
+                                </HBox>
+
+                                <VBox>
+                                    <smartTable:SmartTable
+                                        id="smartErrorTable"
+                                        entitySet="ZP_QU_DG_MARA_MASSREQ"
+                                        tableType="Table"
+                                        useExportToExcel="true"
+                                        useVariantManagement="true"
+                                        useTablePersonalisation="true"
+                                        header="Materials"
+                                        showRowCount="true"
+                                        enableAutoBinding="true"
+                                        class="sapUiResponsiveContentPadding"
+                                        enableAutoColumnWidth="true"
+                                        editTogglable="true"
+                                        beforeRebindTable="onBeforeRebindTable"
+                                        app:useSmartToggle="true"
+                                    >
+                                        <smartTable:layoutData>
+                                            <FlexItemData
+                                                growFactor="1"
+                                                baseSize="0%"
+                                            />
+                                        </smartTable:layoutData>
+                                        <Table
+                                            id="idErrorTable"
+                                            growing="true"
+                                        >
+                                            <ColumnListItem
+                                                highlight="{path:'IsError', formatter:'.formatRowHighlight'}"
+                                            />
+                                        </Table>
+                                    </smartTable:SmartTable>
+                                </VBox>
+                            </VBox>
+                        </WizardStep>
+
+                        <WizardStep
+                            id="idListMaterial"
+                            title="List of Materials"
+                            validated="false"
+                        />
+                    </Wizard>
+                </f:content>
+                <!-- <footer>
+                    <OverflowToolbar>
+                        <ToolbarSpacer />
+                        <Button
+                            text="Cancel"
+                            press="handleWizardCancel"
+                        />
+                    </OverflowToolbar>
+                </footer> -->
+            </f:DynamicPage>
+        </pages>
+    </NavContainer>
+</mvc:View>

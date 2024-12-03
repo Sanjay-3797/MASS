@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="4.0" xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx">
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMON',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Common.v1" Alias="Common"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_UI',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.UI.v1" Alias="UI"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../catalogservice;v=2/Vocabularies(TechnicalName='%2FIWBEP%2FVOC_COMMUNICATION',Version='0001',SAP__Origin='LOCAL')/$value">
+        <edmx:Include Namespace="com.sap.vocabularies.Communication.v1" Alias="Communication"/>
+    </edmx:Reference>
+    <edmx:Reference Uri="../../../sap/zp_qu_dg_confgreq_cds/$metadata">
+        <edmx:Include Namespace="ZP_QU_DG_CONFGREQ_CDS" Alias="SAP"/>
+    </edmx:Reference>
+    <edmx:DataServices>
+        <Schema Namespace="zp_qu_dg_confgreq_cds_van.v1" xmlns="http://docs.oasis-open.org/odata/ns/edm">
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGFLDType/Descrip_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGFLDType/Fldname_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGFLDType/Viewid_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGFLDType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Field Configuration"/>
+                            <PropertyValue Property="ID" String="confgfld"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.Identification"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="View ID"/>
+                            <PropertyValue Property="Value" Path="Viewid"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Field Name"/>
+                            <PropertyValue Property="Value" Path="Fldname"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Description"/>
+                            <PropertyValue Property="Value" Path="Descrip"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Mandatory"/>
+                            <PropertyValue Property="Value" Path="Mandatory"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Hidden"/>
+                            <PropertyValue Property="Value" Path="Hidden"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Readonly"/>
+                            <PropertyValue Property="Value" Path="Readonly"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Optional"/>
+                            <PropertyValue Property="Value" Path="Optional"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="View ID"/>
+                            <PropertyValue Property="Value" Path="Viewid"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Field Name"/>
+                            <PropertyValue Property="Value" Path="Fldname"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Description"/>
+                            <PropertyValue Property="Value" Path="Descrip"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Mandatory"/>
+                            <PropertyValue Property="Value" Path="Mandatory"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Hidden"/>
+                            <PropertyValue Property="Value" Path="Hidden"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Readonly"/>
+                            <PropertyValue Property="Value" Path="Readonly"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Optional"/>
+                            <PropertyValue Property="Value" Path="Optional"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType/Configid">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType/Configname_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType/Mattype_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType/RequestType_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType/Step_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGREQType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Request Configuration"/>
+                            <PropertyValue Property="ID" String="confgreq"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.Identification"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="View Configuration"/>
+                            <PropertyValue Property="ID" String="confg_view"/>
+                            <PropertyValue Property="Target" AnnotationPath="to_confgview/@UI.LineItem"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Material Configuration"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Configreq"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Configreq">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Material type"/>
+                                    <PropertyValue Property="Value" Path="Mattype"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Step"/>
+                                    <PropertyValue Property="Value" Path="Step"/>
+                                </Record>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="Request type"/>
+                                    <PropertyValue Property="Value" Path="RequestType"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Configuration"/>
+                        <PropertyValue Property="TypeNamePlural" String="Configurations"/>
+                        <PropertyValue Property="ImageUrl" String="">
+                            <Annotation Term="Core.Messages">
+                                <Collection>
+                                    <Record>
+                                        <PropertyValue Property="code" String="SADL_GW_EXP_VOCAN-001"/>
+                                        <PropertyValue Property="message" String="Property 'image_url' of annotation 'IMAGEURL' in proj./view 'ZP_QU_DG_CONFGREQ' not found"/>
+                                        <PropertyValue Property="severity" String="error"/>
+                                    </Record>
+                                </Collection>
+                            </Annotation>
+                        </PropertyValue>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Configname"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.Identification">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Configuration Name"/>
+                            <PropertyValue Property="Value" Path="Configname"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Material type"/>
+                            <PropertyValue Property="Value" Path="Mattype"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Step"/>
+                            <PropertyValue Property="Value" Path="Step"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Request type"/>
+                            <PropertyValue Property="Value" Path="RequestType"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Configuration Name"/>
+                            <PropertyValue Property="Value" Path="Configname"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Material type"/>
+                            <PropertyValue Property="Value" Path="Mattype"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Step"/>
+                            <PropertyValue Property="Value" Path="Step"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Request type"/>
+                            <PropertyValue Property="Value" Path="RequestType"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.SelectionFields">
+                    <Collection>
+                        <PropertyPath>Mattype</PropertyPath>
+                        <PropertyPath>Step</PropertyPath>
+                        <PropertyPath>RequestType</PropertyPath>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGVIEWType/Descrip_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGVIEWType/Editable_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGVIEWType/Hidden_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGVIEWType/Readonly_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGVIEWType/Viewid_fc">
+                <Annotation Term="UI.Hidden"/>
+            </Annotations>
+            <Annotations Target="ZP_QU_DG_CONFGREQ_CDS.ZP_QU_DG_CONFGVIEWType">
+                <Annotation Term="UI.Facets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="View Configuration"/>
+                            <PropertyValue Property="ID" String="confgview"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.Identification"/>
+                        </Record>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="Field Configuration"/>
+                            <PropertyValue Property="ID" String="confg_fld"/>
+                            <PropertyValue Property="Target" AnnotationPath="to_confgfld/@UI.LineItem"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.HeaderFacets">
+                    <Collection>
+                        <Record Type="UI.ReferenceFacet">
+                            <PropertyValue Property="Label" String="View Configuration"/>
+                            <PropertyValue Property="Target" AnnotationPath="@UI.FieldGroup#Configview"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+                <Annotation Term="UI.FieldGroup" Qualifier="Configview">
+                    <Record>
+                        <PropertyValue Property="Data">
+                            <Collection>
+                                <Record Type="UI.DataField">
+                                    <PropertyValue Property="Label" String="View ID"/>
+                                    <PropertyValue Property="Value" Path="Viewid"/>
+                                </Record>
+                            </Collection>
+                        </PropertyValue>
+                    </Record>
+                </Annotation>
+                <Annotation Term="UI.HeaderInfo">
+                    <Record>
+                        <PropertyValue Property="TypeName" String="Consumption View for View Configuration"/>
+                        <PropertyValue Property="ImageUrl" String="">
+                            <Annotation Term="Core.Messages">
+                                <Collection>
+                                    <Record>
+                                        <PropertyValue Property="code" String="SADL_GW_EXP_VOCAN-001"/>
+                                        <PropertyValue Property="message" String="Property 'image_url' of annotation 'IMAGEURL' in proj./view 'ZP_QU_DG_CONFGVIEW' not found"/>
+                                        <PropertyValue Property="severity" String="error"/>
+                                    </Record>
+                                </Collection>
+                            </Annotation>
+                        </PropertyValue>
+                        <PropertyValue Property="Title">
+                            <Record Type="UI.DataField">
+                                <PropertyValue Property="Value" Path="Descrip"/>
+                            </Record>
+                        </PropertyValue>
+                    </Record>
+                    <Annotation Term="Core.Messages">
+                        <Collection>
+                            <Record>
+                                <PropertyValue Property="message" String="UI.HEADERINFO: TypeNamePlural is mandatory"/>
+                                <PropertyValue Property="severity" String="error"/>
+                            </Record>
+                        </Collection>
+                    </Annotation>
+                </Annotation>
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="View ID"/>
+                            <PropertyValue Property="Value" Path="Viewid"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Description"/>
+                            <PropertyValue Property="Value" Path="Descrip"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Editable"/>
+                            <PropertyValue Property="Value" Path="Editable"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Hidden"/>
+                            <PropertyValue Property="Value" Path="Hidden"/>
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Label" String="Readonly"/>
+                            <PropertyValue Property="Value" Path="Readonly"/>
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

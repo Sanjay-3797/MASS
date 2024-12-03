@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="ZQU_DG_MATERIAL_MASS_UPLOAD_SRV" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="MassUpload" m:HasStream="true" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="REQID"/>
+                </Key>
+                <Property Name="REQID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Request Id" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityContainer Name="ZQU_DG_MATERIAL_MASS_UPLOAD_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="MassUploadSet" EntityType="ZQU_DG_MATERIAL_MASS_UPLOAD_SRV.MassUpload" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+            </EntityContainer>
+            <atom:link rel="self" href="http://airdithana.airditsoftware.com:8010/sap/opu/odata/sap/ZQU_DG_MATERIAL_MASS_UPLOAD_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://airdithana.airditsoftware.com:8010/sap/opu/odata/sap/ZQU_DG_MATERIAL_MASS_UPLOAD_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

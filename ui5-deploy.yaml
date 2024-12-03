@@ -1,0 +1,26 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: com.worksheet.worksheet
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        log: 5
+        target:
+          destination: AIRDIT_HANA_S4P
+          url: http://airdithanaprd.airditsoftware.com:8010
+        app:
+          name: ZMASSMATTMPLT
+          description: material mass template creation
+          package: zqu-dg-matui
+          transport: S4PK900075
+        exclude:
+          - /test/

@@ -1,0 +1,56 @@
+
+/* Enter your custom styles here */
+.listOptions{
+    box-shadow: 4.5px 9.0px 9.0px hsl(0deg 0% 0% / 0.36);
+}
+.listOptionsHeader{
+    -webkit-box-shadow: 10px 10px 26px -17px rgba(0,0,0,0.75);
+    -moz-box-shadow: 10px 10px 26px -17px rgba(0,0,0,0.75);
+    box-shadow: 10px 10px 26px -17px rgba(0,0,0,0.75);
+    font-size: 22px;
+    font-weight: 700;
+
+}
+.iFrameClass {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 100%;
+    height: 91%;
+    border: none !important;
+}
+.defaultButton{
+    width: 100px;
+    border-radius: 5px !important;
+    background-color: rgb(211, 211, 211);
+    margin: 0px 20px;
+    font-style: inherit;
+}
+.defaultButton span{
+    border: none !important;
+    border-radius: 5px !important;
+    background: rgb(211, 211, 211) !important;
+   color:black !important;  /* text color */
+}
+.defaultButton span::before{
+    outline: none !important;
+    border: none !important;
+    text-shadow: none !important;
+}
+
+.uploadButton ,.sapMInputBaseNoWidth {
+    margin-top: 10px;
+}
+
+.fileUploaderWrapper {
+    display: flex;
+    align-items: center;
+}
+
+.fileUploader {
+    flex: 1;
+    margin-right: 10px;
+}
+
+
+

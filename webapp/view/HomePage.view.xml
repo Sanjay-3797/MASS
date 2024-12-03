@@ -1,0 +1,27 @@
+<mvc:View controllerName="com.worksheet.worksheet.controller.HomePage"
+    xmlns:mvc="sap.ui.core.mvc" xmlns:core="sap.ui.core" displayBlock="true" xmlns:l='sap.ui.layout' xmlns:f='sap.ui.layout.form' xmlns:c='sap.ui.core'
+    xmlns="sap.m" xmlns:form="sap.ui.comp.smartform">
+    <Page id="page" showHeader="false">
+        <content>
+            <Panel id='pHead' height="100%" width="100%">
+                <FlexBox id='flexText' class='sapUiMediumMargin' justifyContent="Center" alignItems="Center">
+                    <Text id='header' class='listOptionsHeader'   text='Material Type Selection'/>
+                </FlexBox>
+                <f:SimpleForm id="grid-2" editable='true' labelSpanL="5" columnsL="3"  columnsM="3" labelSpanM="5" emptySpanL="4" emptySpanM="4" backgroundDesign="Solid"  layout="ResponsiveGridLayout">
+                    <f:content > 
+                        <Label id='label-empname' text="Material Type" required='true'></Label>
+                        <ComboBox id='firstOptions' items="{ZC_QU_DG_MATERIALREQUESTS_CDS>/I_MaterialType}" change="onFirstOptionsChange">
+                            <items>
+                                <core:ListItem id="equalto" key="{ZC_QU_DG_MATERIALREQUESTS_CDS>MaterialType}" text="{path: 'ZC_QU_DG_MATERIALREQUESTS_CDS>MaterialType', formatter: '.formatMaterialType'}"></core:ListItem>
+                            </items>
+                        </ComboBox>
+                    </f:content>
+                </f:SimpleForm>
+                <FlexBox id="flex" justifyContent="Center">
+                    <Button id='second-panel-submit'  press="validMaterial" type='Emphasized' width="100%" text="Submit"></Button>
+                </FlexBox>
+            </Panel>
+        </content>
+    </Page>
+    
+</mvc:View>

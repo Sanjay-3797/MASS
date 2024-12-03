@@ -1,0 +1,349 @@
+{
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "com.worksheet.worksheet",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.13.4",
+            "toolsId": "ec4552c6-902c-4bb5-be4b-8e2f79b19f20"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/sap/ZP_QU_DG_CONFGREQ_CDS/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/mainService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZC_QU_DG_MATERIALREQUESTS_CDS_Annotation": {
+                "uri": "/destinations/Airdit_HANA/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC_QU_DG_MATERIALREQUESTS_CD_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZC_QU_DG_MATERIALREQUESTS_CDS/ZC_QU_DG_MATERIALREQUESTS_CDS_Annotation.xml"
+                }
+            },
+            "ZC_QU_DG_MATERIALREQUESTS_CDS": {
+                "uri": "/sap/opu/odata/sap/ZC_QU_DG_MATERIALREQUESTS_CDS",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZC_QU_DG_MATERIALREQUESTS_CDS_Annotation"
+                    ],
+                    "localUri": "localService/ZC_QU_DG_MATERIALREQUESTS_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZP_QU_DG_CONFGREQ_CDS_Annotation": {
+                "uri": "/destinations/Airdit_HANA/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZP_QU_DG_CONFGREQ_CDS_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZP_QU_DG_CONFGREQ_CDS/ZP_QU_DG_CONFGREQ_CDS_Annotation.xml"
+                }
+            },
+            "ZP_QU_DG_CONFGREQ_CDS": {
+                "uri": "/sap/opu/odata/sap/ZP_QU_DG_CONFGREQ_CDS",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZP_QU_DG_CONFGREQ_CDS_Annotation"
+                    ],
+                    "localUri": "localService/ZP_QU_DG_CONFGREQ_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZQU_DG_MATERIAL_MASS_UPLOAD_SRV": {
+                "uri": "/sap/opu/odata/sap/ZQU_DG_MATERIAL_MASS_UPLOAD_SRV",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/ZQU_DG_MATERIAL_MASS_UPLOAD_SRV/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZC_QUDG_MATERIALMASSUPLOAD_CDS_Annotation": {
+                "uri": "/destinations/Airdit_HANA_R/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC_QUDG_MATERIALMASSUPLOAD_C_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZC_QUDG_MATERIALMASSUPLOAD_CDS/ZC_QUDG_MATERIALMASSUPLOAD_CDS_Annotation.xml"
+                }
+            },
+            "ZC_QUDG_MATERIALMASSUPLOAD_CDS": {
+                "uri": "/sap/opu/odata/sap/ZC_QUDG_MATERIALMASSUPLOAD_CDS",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZC_QUDG_MATERIALMASSUPLOAD_CDS_Annotation"
+                    ],
+                    "localUri": "localService/ZC_QUDG_MATERIALMASSUPLOAD_CDS/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZQU_DG_MAT_MASS_UPLOAD_SRV": {
+                "uri": "/sap/opu/odata/sap/ZQU_DG_MAT_MASS_UPLOAD_SRV",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/ZQU_DG_MAT_MASS_UPLOAD_SRV/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "ZP_QU_DG_MARA_MASSREQ_BND_Annotation": {
+                "uri": "/destinations/AIRDIT_HANA_S4P/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZP_QU_DG_MARA_MASSREQ_BND_VAN',Version='0001')/$value/",
+                "type": "ODataAnnotation",
+                "settings": {
+                    "localUri": "localService/ZP_QU_DG_MARA_MASSREQ_BND/ZP_QU_DG_MARA_MASSREQ_BND_Annotation.xml"
+                }
+            },
+            "ZP_QU_DG_MARA_MASSREQ_BND": {
+                "uri": "/sap/opu/odata/sap/ZP_QU_DG_MARA_MASSREQ_BND",
+                "type": "OData",
+                "settings": {
+                    "annotations": [
+                        "ZP_QU_DG_MARA_MASSREQ_BND_Annotation",
+                        "annotationOverviewPage"
+                    ],
+                    "localUri": "localService/ZP_QU_DG_MARA_MASSREQ_BND/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            },
+            "annotationOverviewPage": {
+                "type": "ODataAnnotation",
+                "uri": "annotations/annotationOverviewPage.xml",
+                "settings": {
+                    "localUri": "annotations/annotationOverviewPage.xml"
+                }
+            }
+        }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "services": {
+            "ShellUIService": {
+                "factoryName": "sap.ushell.ui5service.ShellUIService"
+            }
+        },
+        "flexEnabled": false,
+        "dependencies": {
+            "minUI5Version": "1.123.2",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.worksheet.worksheet.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "ZC_QU_DG_MATERIALREQUESTS_CDS": {
+                "dataSource": "ZC_QU_DG_MATERIALREQUESTS_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "MaterialType": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "BatchModel": {
+                "type": "sap.ui.model.json.JSONModel"
+            },
+            "ZP_QU_DG_CONFGREQ_CDS": {
+                "dataSource": "ZP_QU_DG_CONFGREQ_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ZQU_DG_MATERIAL_MASS_UPLOAD_SRV": {
+                "dataSource": "ZQU_DG_MATERIAL_MASS_UPLOAD_SRV",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ZC_QUDG_MATERIALMASSUPLOAD_CDS": {
+                "dataSource": "ZC_QUDG_MATERIALMASSUPLOAD_CDS",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ZQU_DG_MAT_MASS_UPLOAD_SRV": {
+                "dataSource": "ZQU_DG_MAT_MASS_UPLOAD_SRV",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            },
+            "ZP_QU_DG_MARA_MASSREQ_BND": {
+                "dataSource": "ZP_QU_DG_MARA_MASSREQ_BND",
+                "preload": true,
+                "settings": {
+                    "defaultBindingMode": "TwoWay",
+                    "defaultCountMode": "Inline",
+                    "refreshAfterChange": false,
+                    "metadataUrlParams": {
+                        "sap-value-list": "none"
+                    }
+                }
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.worksheet.worksheet.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "name": "RouteHomePage",
+                    "pattern": ":?query:",
+                    "target": [
+                        "TargetHomePage"
+                    ]
+                },
+                {
+                    "name": "MainPage",
+                    "pattern": "mainpage",
+                    "target": [
+                        "TargetMainPage"
+                    ]
+                },
+                {
+                    "name": "RouteMaterialList",
+                    "pattern": "MaterialList/{id}",
+                    "target": [
+                        "TargetMaterialList"
+                    ]
+                },
+                {
+                    "name": "RouteListReport",
+                    "pattern": "ListReport/{id}",
+                    "target": [
+                        "TargetListReport"
+                    ]
+                }
+            ],
+            "targets": {
+                "TargetHomePage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "HomePage",
+                    "viewName": "HomePage"
+                },
+                "TargetMainPage": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "MainPage",
+                    "viewName": "MainPage"
+                },
+                "TargetMaterialList": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "MaterialList",
+                    "viewName": "MaterialList"
+                },
+                "TargetListReport": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "ListReport",
+                    "viewName": "ListReport",
+                    "cache": {
+                        "maxSize": 0,
+                        "maxEntries": 0,
+                        "maxAge": -1
+                    }
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "com.worksheet.worksheet.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    }
+}
