@@ -84,8 +84,6 @@ server:
             mockdataPath: ./webapp/localService/ZP_QU_DG_MARA_MASSREQ_BND/mockdata
             generateMockData: true
         annotations:
-          - localPath: ./webapp/annotations/annotationMaterials.xml
-            urlPath: annotations/annotationMaterials.xml
           - localPath: ./webapp/localService/ZC_QU_DG_MATERIALREQUESTS_CDS/ZC_QU_DG_MATERIALREQUESTS_CDS_Annotation.xml
             urlPath: /destinations/Airdit_HANA/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC_QU_DG_MATERIALREQUESTS_CD_VAN',Version='0001')/$value/
           - localPath: ./webapp/localService/ZP_QU_DG_CONFGREQ_CDS/ZP_QU_DG_CONFGREQ_CDS_Annotation.xml
@@ -94,3 +92,5 @@ server:
             urlPath: /destinations/Airdit_HANA_R/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZC_QUDG_MATERIALMASSUPLOAD_C_VAN',Version='0001')/$value/
           - localPath: ./webapp/localService/ZP_QU_DG_MARA_MASSREQ_BND/ZP_QU_DG_MARA_MASSREQ_BND_Annotation.xml
             urlPath: /destinations/AIRDIT_HANA_S4P/sap/opu/odata/IWFND/CATALOGSERVICE;v=2/Annotations(TechnicalName='ZP_QU_DG_MARA_MASSREQ_BND_VAN',Version='0001')/$value/
+          - localPath: ./webapp/annotations/annotationOverviewPage.xml
+            urlPath: annotations/annotationOverviewPage.xml

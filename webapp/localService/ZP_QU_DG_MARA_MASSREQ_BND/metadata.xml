@@ -39,6 +39,14 @@
     <edmx:DataServices m:DataServiceVersion="2.0">
         <Schema Namespace="cds_zp_qu_dg_mara_massreq_srv" xml:lang="en" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
             <Annotation Term="Core.SchemaVersion" String="1.0.0" xmlns="http://docs.oasis-open.org/odata/ns/edm"/>
+            <EntityType Name="ZI_QU_DG_Mara_ErrorcountType" sap:label="Material mass upload error count" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Reqid"/>
+                </Key>
+                <Property Name="Reqid" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Material Request Id"/>
+                <Property Name="status" Type="Edm.String" MaxLength="9"/>
+                <Property Name="counts" Type="Edm.Int32"/>
+            </EntityType>
             <EntityType Name="ZP_QU_DG_MARA_MASSREQType" sap:label="Material details" sap:content-version="1">
                 <Key>
                     <PropertyRef Name="SNo"/>
@@ -63,6 +71,8 @@
                 <Property Name="Aenam" Type="Edm.String" MaxLength="12" sap:display-format="UpperCase" sap:label="Changed By" sap:quickinfo="Name of Person Who Changed Object"/>
                 <Property Name="Vpsta" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Compl. maint. status" sap:quickinfo="Maintenance status of complete material"/>
                 <Property Name="Pstat" Type="Edm.String" MaxLength="15" sap:display-format="UpperCase" sap:label="Maintenance status"/>
+                <Property Name="spras" Type="Edm.String" MaxLength="2" sap:label="Language Key"/>
+                <Property Name="maktx" Type="Edm.String" MaxLength="40" sap:label="Material Description"/>
                 <Property Name="Lvorm" Type="Edm.Boolean" sap:display-format="UpperCase" sap:label="DF at client level" sap:quickinfo="Flag Material for Deletion at Client Level"/>
                 <Property Name="Mtart" Type="Edm.String" MaxLength="4" sap:display-format="UpperCase" sap:label="Material type"/>
                 <Property Name="Mbrsh" Type="Edm.String" MaxLength="1" sap:display-format="UpperCase" sap:label="Industry Sector"/>
@@ -1344,6 +1354,7 @@
             <EntityContainer Name="cds_zp_qu_dg_mara_massreq_srv_Entities" m:IsDefaultEntityContainer="true" sap:message-scope-supported="true" sap:supported-formats="atom json xlsx">
                 <EntitySet Name="SAP__Currencies" EntityType="cds_zp_qu_dg_mara_massreq_srv.SAP__Currency" sap:content-version="1"/>
                 <EntitySet Name="SAP__UnitsOfMeasure" EntityType="cds_zp_qu_dg_mara_massreq_srv.SAP__UnitOfMeasure" sap:content-version="1"/>
+                <EntitySet Name="ZI_QU_DG_Mara_Errorcount" EntityType="cds_zp_qu_dg_mara_massreq_srv.ZI_QU_DG_Mara_ErrorcountType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1"/>
                 <EntitySet Name="ZP_QU_DG_MARA_MASSREQ" EntityType="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARA_MASSREQType" sap:content-version="1" sap:deletable-path="Delete_mc" sap:updatable-path="Update_mc"/>
                 <EntitySet Name="ZP_QU_DG_MARC_MASSREQ" EntityType="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARC_MASSREQType" sap:content-version="1" sap:deletable-path="Delete_mc" sap:updatable-path="Update_mc"/>
                 <EntitySet Name="ZP_QU_DG_MARD_MASSREQ" EntityType="cds_zp_qu_dg_mara_massreq_srv.ZP_QU_DG_MARD_MASSREQType" sap:content-version="1" sap:deletable-path="Delete_mc" sap:updatable-path="Update_mc"/>

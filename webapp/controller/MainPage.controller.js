@@ -25,7 +25,6 @@ sap.ui.define(
         };
 
         const buttonModel = new JSONModel(buttonSettings);
-
         this.getView().setModel(buttonModel, "buttonModel");
 
         const smartChartModel = this.getOwnerComponent().getModel(
@@ -38,40 +37,33 @@ sap.ui.define(
         );
         this.getView().byId("smartErrorTable").setModel(smartTableModel);
 
-        var oWizard = this.byId("idCreateMaterialWizard");
-
         this.oProgressIndicator = this.getView().byId("idProgressIndicator");
 
-        oWizard.attachNavigationChange((oEvent) => {
-          var oStepTitle = oEvent.getParameter("step").getTitle();
-          this.stepTitles = [
-            "Choose Material Type",
-            "Upload / Download Excel",
-            "Overview",
-            "List of Materials",
-          ];
+        const customizeConfig = {
+          autoColumnWidth: {
+            "*": { min: 2, max: 6, gap: 1, truncateLabel: false },
+          },
+        };
+        this.oSmartTable = this.getView().byId("smartErrorTable");
+        this.oSmartTable.setCustomizeConfig(customizeConfig);
 
-          let progressValue = 0;
-          switch (oStepTitle) {
-            case this.stepTitles[0]:
-              progressValue = 25;
-              break;
-            case this.stepTitles[1]:
-              progressValue = 50;
-              break;
-            case this.stepTitles[2]:
-              progressValue = 75;
-              break;
-            case this.stepTitles[3]:
-              progressValue = 100;
-              break;
-            default:
-              progressValue = 0;
-              break;
-          }
+        // this.reqid = "MATREQ651";
 
-          this.oProgressIndicator.setPercentValue(progressValue);
-          this.oProgressIndicator.setDisplayValue(`${progressValue}%`);
+        let errorModel = this.getOwnerComponent().getModel(
+          "ZP_QU_DG_MARA_MASSREQ_BND"
+        );
+
+        debugger;
+        errorModel.read("/ZP_QU_DG_MARA_MASSREQ", {
+          filters: [new sap.ui.model.Filter("Reqid", "EQ", this.reqid)],
+          success: function (res) {
+            debugger;
+            console.log(res);
+          },
+          error: function (err) {
+            // debugger;
+            console.log(err);
+          },
         });
       },
 
@@ -122,8 +114,8 @@ sap.ui.define(
           docSubmitButton: true,
         });
 
-        this.oProgressIndicator.setPercentValue(25);
-        this.oProgressIndicator.setDisplayValue(`${25}%`);
+        this.oProgressIndicator.setPercentValue(33);
+        this.oProgressIndicator.setDisplayValue(`${33}%`);
       },
 
       onPressClear: function (oEvent) {
@@ -145,6 +137,9 @@ sap.ui.define(
           submitButton: true,
           docSubmitButton: true,
         });
+
+        this.oProgressIndicator.setPercentValue(0);
+        this.oProgressIndicator.setDisplayValue(`${0}%`);
       },
 
       onPressEdit: function (oEvent) {
@@ -399,7 +394,6 @@ sap.ui.define(
 
           const oWizard = this.getView().byId("idCreateMaterialWizard");
           const oCurrentStep = this.getView().byId("idOverview");
-          debugger;
           this.getView().byId("smartErrorChart").rebindChart();
           this.getView().byId("smartErrorTable").rebindTable();
 
@@ -407,28 +401,42 @@ sap.ui.define(
           oCurrentStep.setValidated(true);
           oWizard.nextStep();
 
-          this.oProgressIndicator.setPercentValue(50);
-          this.oProgressIndicator.setDisplayValue(`${50}%`);
+          this.oProgressIndicator.setPercentValue(66);
+          this.oProgressIndicator.setDisplayValue(`${66}%`);
         } else {
           sap.m.MessageToast.show("Upload Failed" + error);
+          this.oTable.setBusy(false);
         }
       },
 
       onBeforeRebindChart: function (oEvent) {
+        // debugger
         oEvent
           .getParameter("bindingParams")
           .filters.push(new sap.ui.model.Filter("Reqid", "EQ", this.reqid));
+        // .filters.push(new sap.ui.model.Filter("Reqid", "EQ", "MATREQ638"));
       },
+
       onBeforeRebindTable: function (oEvent) {
         oEvent
           .getParameter("bindingParams")
           .filters.push(new sap.ui.model.Filter("Reqid", "EQ", this.reqid));
+        // .filters.push(new sap.ui.model.Filter("Reqid", "EQ", "MATREQ638"));
       },
+
       formatRowHighlight: function (oValue) {
+        debugger
         if (oValue) {
           return "Error";
+        } else {
+          return "Success";
         }
-        return "Success";
+      },
+
+      onActionButtonPress: function (oEvent) {
+        var oButton = oEvent.getSource();
+        let objType = oEvent.getSource().getBindingContext().getObject();
+        this.byId("actionSheet").openBy(oButton);
       },
 
       wizardCompletedHandler: function () {},

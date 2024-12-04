@@ -13,25 +13,31 @@
     </edmx:Reference>
     <edmx:DataServices>
         <Schema xmlns="http://docs.oasis-open.org/odata/ns/edm" Namespace="">
-        <Annotations Target="SAP.ZP_QU_DG_MARA_MASSREQType">
-            <Annotation Term="com.sap.vocabularies.UI.v1.Chart">
-					<Record>
-						<PropertyValue Property="ChartType"
-							EnumMember="com.sap.vocabularies.UI.v1.ChartType/Bar" />
-						<PropertyValue Property="Dimensions">
-							<Collection>
-								<PropertyPath>MtposMara</PropertyPath>
-							</Collection>
-						</PropertyValue>
-						<PropertyValue Property="Measures">
-							<Collection>
-								<PropertyPath>SNo</PropertyPath>
-								<PropertyPath>SNo</PropertyPath>
-							</Collection>
-						</PropertyValue>
-					</Record>
-				</Annotation>
-        </Annotations>
+       <Annotations Target="SAP.ZI_QU_DG_Mara_ErrorcountType">
+           <Annotation Term="UI.Chart" >
+               <Record Type="UI.ChartDefinitionType">
+                   <PropertyValue Property="ChartType" EnumMember="UI.ChartType/Column"/>
+                   <PropertyValue Property="Dimensions">
+                       <Collection>
+                           <PropertyPath>status</PropertyPath>
+                       </Collection>
+                   </PropertyValue>
+                   <PropertyValue Property="Measures">
+                       <Collection>
+                           <PropertyPath>counts</PropertyPath>
+                       </Collection>
+                   </PropertyValue>
+                   <PropertyValue Property="MeasureAttributes">
+                       <Collection>
+                           <Record Type="UI.ChartMeasureAttributeType">
+                               <PropertyValue Property="Measure" PropertyPath="counts"/>
+                               <PropertyValue Property="Role" EnumMember="UI.ChartMeasureRoleType/Axis1"/>
+                           </Record>
+                       </Collection>
+                   </PropertyValue>
+               </Record>
+           </Annotation>
+       </Annotations>
 
         <!-- <Annotations Target="SAP.ZP_QU_DG_MARA_MASSREQType">
             <Annotation Term="com.sap.vocabularies.UI.v1.Chart">
@@ -58,10 +64,9 @@
                 <Collection>
                     <Record Type="UI.DataField">
                         <PropertyValue Property="Value" Path="SNo"/>
-                    </Record>
-                   
+                    </Record>                   
                     <Record Type="UI.DataField">
-                        <PropertyValue Property="Value" Path="Matkl"/>
+                        <PropertyValue Property="Value" Path="maktx"/>
                     </Record>
                     <Record Type="UI.DataField">
                         <PropertyValue Property="Value" Path="Mtart"/>

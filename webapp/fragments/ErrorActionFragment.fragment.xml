@@ -1,0 +1,23 @@
+<ActionSheet
+    id="actionSheet"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    title="Choose Your Action"
+    showCancelButton="true"
+>
+    <Button
+        text="Edit"
+        icon="sap-icon://edit"
+        press=""
+    />
+    <Button
+        text="Check for Duplicates"
+        icon="sap-icon://duplicate"
+        press=""
+    />
+    <Button
+        text="Errors"
+        icon="sap-icon://message-error"
+        type="Reject"
+    />
+</ActionSheet>

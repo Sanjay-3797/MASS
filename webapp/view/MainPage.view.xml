@@ -15,7 +15,6 @@
     xmlns:smartTable="sap.ui.comp.smarttable"
     xmlns:layout="sap.ui.layout"
     xmlns:smartchart="sap.ui.comp.smartchart"
-    xmlns:app="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 >
     <NavContainer id="wizardNavContainer">
         <pages>
@@ -201,14 +200,74 @@
                             <VBox fitContainer="true">
                                 <HBox
                                     fitContainer="true"
-                                    class="sapUiMediumMargin"
+                                    class="sapUiMediumMarginBegin sapUiMediumMarginTop"
                                 >
-                                    <!-- <Text text="Counts.........." /> -->
+                                    <VBox width="50%">
+                                        <HBox
+                                            justifyContent="Center"
+                                            alignItems="Center"
+                                        >
+                                            <VBox
+                                                justifyContent="Center"
+                                                alignItems="Center"
+                                            >
+                                                <Title
+                                                    text="1000"
+                                                    titleStyle="H2"
+                                                />
+                                                <Text text="Total Count" />
+                                            </VBox>
+
+                                            <VBox
+                                                class="sapUiMediumMarginBegin"
+                                                justifyContent="Center"
+                                                alignItems="Center"
+                                            >
+                                                <Title
+                                                    text="200"
+                                                    titleStyle="H2"
+                                                    class="errorText"
+                                                />
+
+                                                <Text text="Error" />
+                                            </VBox>
+                                            <VBox
+                                                class="sapUiMediumMarginBegin"
+                                                justifyContent="Center"
+                                                alignItems="Center"
+                                            >
+                                                <Title
+                                                    text="800"
+                                                    titleStyle="H2"
+                                                    class="successText"
+                                                />
+                                                <Text text="Without Errors" />
+                                            </VBox>
+                                        </HBox>
+
+                                        <HBox
+                                            class="sapUiMediumMarginTop"
+                                            height="50%"
+                                        >
+                                            <VBox>
+                                                <Title
+                                                    text="Change History"
+                                                    class="sapUiTinyMarginBottom"
+                                                />
+                                                <Text
+                                                    text="Changed Records : 02"
+                                                />
+                                                <Text
+                                                    text="Affected Tables : 01"
+                                                />
+                                            </VBox>
+                                        </HBox>
+                                    </VBox>
 
                                     <smartchart:SmartChart
                                         id="smartErrorChart"
                                         enableAutoBinding="false"
-                                        entitySet="ZP_QU_DG_MARA_MASSREQ"
+                                        entitySet="ZI_QU_DG_Mara_Errorcount"
                                         header=""
                                         showFullScreenButton="true"
                                         selectionMode="Multi"
@@ -219,6 +278,7 @@
                                         showSemanticNavigationButton="true"
                                         height="40vh"
                                         beforeRebindChart="onBeforeRebindChart"
+                                        width="50%"
                                     />
                                 </HBox>
 
@@ -228,16 +288,12 @@
                                         entitySet="ZP_QU_DG_MARA_MASSREQ"
                                         tableType="Table"
                                         useExportToExcel="true"
-                                        useVariantManagement="true"
-                                        useTablePersonalisation="true"
                                         header="Materials"
                                         showRowCount="true"
                                         enableAutoBinding="true"
                                         class="sapUiResponsiveContentPadding"
-                                        enableAutoColumnWidth="true"
-                                        editTogglable="true"
                                         beforeRebindTable="onBeforeRebindTable"
-                                        app:useSmartToggle="true"
+                                        requestAtLeastFields="IsError"
                                     >
                                         <smartTable:layoutData>
                                             <FlexItemData
@@ -248,21 +304,53 @@
                                         <Table
                                             id="idErrorTable"
                                             growing="true"
+                                            mode="MultiSelect"
                                         >
-                                            <ColumnListItem
-                                                highlight="{path:'IsError', formatter:'.formatRowHighlight'}"
-                                            />
+                                            <columns>
+                                                <Column
+                                                    id='Action'
+                                                    width="70px"
+                                                >
+                                                    <customData>
+                                                        <core:CustomData
+                                                            key="p13nData"
+                                                            value='\{"columnKey": "Kzgvh", "columnIndex": 10, "columnWidth": "70px"}'
+                                                        />
+                                                    </customData>
+                                                    <Text
+                                                        text="Actions"
+                                                        textAlign="Center"
+                                                    />
+                                                </Column>
+                                            </columns>
+
+                                            <items>
+                                                <ColumnListItem
+                                                    highlight="{path:'IsError', formatter:'.formatRowHighlight'}"
+                                                    vAlign="Middle"
+                                                    type="Navigation"
+                                                    press=""
+                                                >
+                                                    <cells>
+                                                        <Button
+                                                            icon="sap-icon://overflow"
+                                                            press=".onActionButtonPress"
+                                                        >
+                                                            <dependents>
+                                                                <core:Fragment
+                                                                    fragmentName="com.worksheet.worksheet.fragments.ErrorActionFragment"
+                                                                    type="XML"
+                                                                />
+                                                            </dependents>
+                                                        </Button>
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
                                         </Table>
                                     </smartTable:SmartTable>
                                 </VBox>
                             </VBox>
                         </WizardStep>
-
-                        <WizardStep
-                            id="idListMaterial"
-                            title="List of Materials"
-                            validated="false"
-                        />
                     </Wizard>
                 </f:content>
                 <!-- <footer>
