@@ -27,6 +27,16 @@ sap.ui.define(
         const buttonModel = new JSONModel(buttonSettings);
         this.getView().setModel(buttonModel, "buttonModel");
 
+        const graphStats = {
+          visible: false,
+          totalCount: 0,
+          errorCount: 0,
+          noErrorCount: 0,
+        };
+
+        const graphStatsModel = new JSONModel(graphStats);
+        this.getView().setModel(graphStatsModel, "graphStatsModel");
+
         const smartChartModel = this.getOwnerComponent().getModel(
           "ZP_QU_DG_MARA_MASSREQ_BND"
         );
@@ -47,24 +57,17 @@ sap.ui.define(
         this.oSmartTable = this.getView().byId("smartErrorTable");
         this.oSmartTable.setCustomizeConfig(customizeConfig);
 
-        // this.reqid = "MATREQ651";
-
-        let errorModel = this.getOwnerComponent().getModel(
-          "ZP_QU_DG_MARA_MASSREQ_BND"
-        );
-
-        debugger;
-        errorModel.read("/ZP_QU_DG_MARA_MASSREQ", {
-          filters: [new sap.ui.model.Filter("Reqid", "EQ", this.reqid)],
-          success: function (res) {
-            debugger;
-            console.log(res);
-          },
-          error: function (err) {
-            // debugger;
-            console.log(err);
-          },
-        });
+        // var oVizProperties = {
+        //   plotArea: {
+        //     dataLabel: {
+        //       visible: true,
+        //     },
+        //     colorPalette: ["#ef6638"], // Custom color for the chart
+        //   },
+        // };
+        // debugger
+        // this.oSmartChart = this.getView().byId("smartErrorChart");
+        // this.oSmartChart.setVizProperties(oVizProperties);
       },
 
       onChangeMaterialType: function () {
@@ -352,6 +355,7 @@ sap.ui.define(
         let aFileUploader = [];
         let that = this;
         this.reqid = reqid;
+
         oTable.forEach((item) => {
           aFileUploader.push(item.getAggregation("cells")[2]);
         });
@@ -395,6 +399,44 @@ sap.ui.define(
           const oWizard = this.getView().byId("idCreateMaterialWizard");
           const oCurrentStep = this.getView().byId("idOverview");
           this.getView().byId("smartErrorChart").rebindChart();
+          this.getView()
+            .byId("smartErrorChart")
+            .getChartAsync()
+            .then((chart) => {
+              const oVizProperties = {
+                plotArea: {
+                  dataLabel: {
+                    visible: true,
+                  },
+                  colorPalette: ["#f53131", "#30914c"],
+                },
+              };
+              chart.setVizProperties(oVizProperties);
+            });
+
+          let errorModel = this.getOwnerComponent().getModel(
+            "ZP_QU_DG_MARA_MASSREQ_BND"
+          );
+
+          errorModel.read("/ZI_QU_DG_Mara_Errorcount", {
+            filters: [new sap.ui.model.Filter("Reqid", "EQ", this.reqid)],
+            success: function (res) {
+              debugger;
+              this.getView()
+                .getModel("graphStatsModel")
+                .setData({
+                  visible: true,
+                  totalCount:
+                    +res?.results[0]?.Errors + +res?.results[0]?.Without_Errors,
+                  errorCount: res?.results[0]?.Errors,
+                  noErrorCount: res?.results[0]?.Without_Errors,
+                });
+            }.bind(this),
+            error: function (err) {
+              sap.m.MessageBox.error(err);
+            },
+          });
+
           this.getView().byId("smartErrorTable").rebindTable();
 
           this.oTable.setBusy(false);
@@ -410,22 +452,18 @@ sap.ui.define(
       },
 
       onBeforeRebindChart: function (oEvent) {
-        // debugger
         oEvent
           .getParameter("bindingParams")
           .filters.push(new sap.ui.model.Filter("Reqid", "EQ", this.reqid));
-        // .filters.push(new sap.ui.model.Filter("Reqid", "EQ", "MATREQ638"));
       },
 
       onBeforeRebindTable: function (oEvent) {
         oEvent
           .getParameter("bindingParams")
           .filters.push(new sap.ui.model.Filter("Reqid", "EQ", this.reqid));
-        // .filters.push(new sap.ui.model.Filter("Reqid", "EQ", "MATREQ638"));
       },
 
       formatRowHighlight: function (oValue) {
-        debugger
         if (oValue) {
           return "Error";
         } else {
@@ -438,6 +476,20 @@ sap.ui.define(
         let objType = oEvent.getSource().getBindingContext().getObject();
         this.byId("actionSheet").openBy(oButton);
       },
+
+      onChartPress: function(oEvent) {
+        debugger
+        // Get the selected data point from the chart
+        var oSmartChart = this.byId("smartErrorChart");
+        var oSelectedData = oEvent.getParameters();
+        console.log("Selected Data from Chart: ", oSelectedData);
+
+        // Assume that oSelectedData.data is the key or the dimension you want to filter by
+        var selectedDimension = oSelectedData.data; // Adjust this based on what you click on (e.g., category, series)
+
+        // Now filter the table based on the selected dimension
+        // this._filterTable(selectedDimension);
+    },
 
       wizardCompletedHandler: function () {},
 

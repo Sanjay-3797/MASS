@@ -36,6 +36,52 @@
                             />
                         </f:expandedContent>
 
+                        <f:content>
+                            <OverflowToolbar>
+                                <GenericTag
+                                    text="Total"
+                                    status="None"
+                                    design="StatusIconHidden"
+                                    class="sapUiMediumMarginBegin"
+                                    visible="{graphStatsModel>/visible}"
+                                >
+                                    <ObjectNumber
+                                        number="{graphStatsModel>/totalCount}"
+                                        emphasized="false"
+                                        state="None"
+                                    />
+                                </GenericTag>
+
+                                <GenericTag
+                                    text="Errors"
+                                    status="Error"
+                                    design="StatusIconHidden"
+                                    class="sapUiMediumMarginBegin"
+                                    visible="{graphStatsModel>/visible}"
+                                >
+                                    <ObjectNumber
+                                        number="{graphStatsModel>/errorCount}"
+                                        emphasized="false"
+                                        state="Error"
+                                    />
+                                </GenericTag>
+
+                                <GenericTag
+                                    text="Without Errors"
+                                    status="Success"
+                                    design="StatusIconHidden"
+                                    class="sapUiMediumMarginBegin"
+                                    visible="{graphStatsModel>/visible}"
+                                >
+                                    <ObjectNumber
+                                        number="{graphStatsModel>/noErrorCount}"
+                                        emphasized="false"
+                                        state="Success"
+                                    />
+                                </GenericTag>
+                            </OverflowToolbar>
+                        </f:content>
+
                         <f:actions>
                             <ProgressIndicator
                                 id="idProgressIndicator"
@@ -202,73 +248,11 @@
                                     fitContainer="true"
                                     class="sapUiMediumMarginBegin sapUiMediumMarginTop"
                                 >
-                                    <VBox width="50%">
-                                        <HBox
-                                            justifyContent="Center"
-                                            alignItems="Center"
-                                        >
-                                            <VBox
-                                                justifyContent="Center"
-                                                alignItems="Center"
-                                            >
-                                                <Title
-                                                    text="1000"
-                                                    titleStyle="H2"
-                                                />
-                                                <Text text="Total Count" />
-                                            </VBox>
-
-                                            <VBox
-                                                class="sapUiMediumMarginBegin"
-                                                justifyContent="Center"
-                                                alignItems="Center"
-                                            >
-                                                <Title
-                                                    text="200"
-                                                    titleStyle="H2"
-                                                    class="errorText"
-                                                />
-
-                                                <Text text="Error" />
-                                            </VBox>
-                                            <VBox
-                                                class="sapUiMediumMarginBegin"
-                                                justifyContent="Center"
-                                                alignItems="Center"
-                                            >
-                                                <Title
-                                                    text="800"
-                                                    titleStyle="H2"
-                                                    class="successText"
-                                                />
-                                                <Text text="Without Errors" />
-                                            </VBox>
-                                        </HBox>
-
-                                        <HBox
-                                            class="sapUiMediumMarginTop"
-                                            height="50%"
-                                        >
-                                            <VBox>
-                                                <Title
-                                                    text="Change History"
-                                                    class="sapUiTinyMarginBottom"
-                                                />
-                                                <Text
-                                                    text="Changed Records : 02"
-                                                />
-                                                <Text
-                                                    text="Affected Tables : 01"
-                                                />
-                                            </VBox>
-                                        </HBox>
-                                    </VBox>
-
                                     <smartchart:SmartChart
                                         id="smartErrorChart"
                                         enableAutoBinding="false"
                                         entitySet="ZI_QU_DG_Mara_Errorcount"
-                                        header=""
+                                        header="Results"
                                         showFullScreenButton="true"
                                         selectionMode="Multi"
                                         showChartTooltip="true"
@@ -279,6 +263,7 @@
                                         height="40vh"
                                         beforeRebindChart="onBeforeRebindChart"
                                         width="50%"
+                                        uiStateChange="onChartPress"
                                     />
                                 </HBox>
 
@@ -287,6 +272,7 @@
                                         id="smartErrorTable"
                                         entitySet="ZP_QU_DG_MARA_MASSREQ"
                                         tableType="Table"
+                                        showFullScreenButton="true"
                                         useExportToExcel="true"
                                         header="Materials"
                                         showRowCount="true"
@@ -328,7 +314,6 @@
                                                 <ColumnListItem
                                                     highlight="{path:'IsError', formatter:'.formatRowHighlight'}"
                                                     vAlign="Middle"
-                                                    type="Navigation"
                                                     press=""
                                                 >
                                                     <cells>

@@ -44,8 +44,8 @@
                     <PropertyRef Name="Reqid"/>
                 </Key>
                 <Property Name="Reqid" Type="Edm.String" Nullable="false" MaxLength="20" sap:display-format="UpperCase" sap:label="Material Request Id"/>
-                <Property Name="status" Type="Edm.String" MaxLength="9"/>
-                <Property Name="counts" Type="Edm.Int32"/>
+                <Property Name="Errors" Type="Edm.Byte"/>
+                <Property Name="Without_Errors" Type="Edm.Byte"/>
             </EntityType>
             <EntityType Name="ZP_QU_DG_MARA_MASSREQType" sap:label="Material details" sap:content-version="1">
                 <Key>
