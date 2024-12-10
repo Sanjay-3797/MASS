@@ -1,0 +1,111 @@
+<core:FragmentDefinition
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    xmlns:upload="sap.m.upload"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+>
+    <Dialog
+        title="Duplicate Check"
+        contentWidth="80%"
+        contentHeight="70%"
+        class="sapUiBigMarginTop"
+    >
+        <customHeader>
+            <Toolbar>
+                <Title text="Duplicate Check" />
+                <ToolbarSpacer />
+            </Toolbar>
+        </customHeader>
+        <content>
+            <Table
+                sticky="ColumnHeaders,HeaderToolbar"
+                growing="true"
+                items="{currentRecord>/}"
+            >
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Text text="Current Entry" />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="Sl No" />
+                    </Column>
+                    <Column>
+                        <Text text="Material Description" />
+                    </Column>
+                    <Column>
+                        <Text text="Material Type" />
+                    </Column>
+                    <Column>
+                        <Text text="Indusrty Sector" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{currentRecord>SNo}" />
+                            <Text text="{currentRecord>maktx}" />
+                            <Text text="{currentRecord>Mtart}" />
+                            <Text text="{currentRecord>Mbrsh}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+            <Table
+                sticky="ColumnHeaders,HeaderToolbar"
+                growing="true"
+                items="{duplicateModel>/}"
+            >
+                <headerToolbar>
+                    <OverflowToolbar>
+                        <Text text="Potential Duplicates" />
+                    </OverflowToolbar>
+                </headerToolbar>
+                <columns>
+                    <Column>
+                        <Text text="Request Id" />
+                    </Column>
+                    <Column>
+                        <Text text="Material Description" />
+                    </Column>
+                    <Column>
+                        <Text text="Material Type" />
+                    </Column>
+                    <Column>
+                        <Text text="Indusrty Sector" />
+                    </Column>
+                    <Column>
+                        <Text text="Score" />
+                    </Column>
+                    <Column>
+                        <Text text="Rule" />
+                    </Column>
+                </columns>
+                <items>
+                    <ColumnListItem>
+                        <cells>
+                            <Text text="{duplicateModel>Reqid}" />
+                            <Text text="{duplicateModel>Maktx}" />
+                            <Text text="{duplicateModel>Mtart}" />
+                            <Text text="{duplicateModel>Mbrsh}" />
+                            <Text text="{duplicateModel>Score}" />
+                            <Text text="{duplicateModel>RuleId}" />
+                        </cells>
+                    </ColumnListItem>
+                </items>
+            </Table>
+        </content>
+        <buttons>
+            <Button
+                text="Ignore / Check Duplicated"
+                type="Emphasized"
+            />
+            <Button
+                text="Cancel"
+                press="onCloseDuplicateCheck"
+            />
+        </buttons>
+    </Dialog>
+</core:FragmentDefinition>

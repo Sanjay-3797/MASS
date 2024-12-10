@@ -32,6 +32,10 @@ sap.ui.define(
           totalCount: 0,
           errorCount: 0,
           noErrorCount: 0,
+          overFlowBar: false,
+          proceed: false,
+          proceedWithoutError: false,
+          cancel: false,
         };
 
         const graphStatsModel = new JSONModel(graphStats);
@@ -56,18 +60,6 @@ sap.ui.define(
         };
         this.oSmartTable = this.getView().byId("smartErrorTable");
         this.oSmartTable.setCustomizeConfig(customizeConfig);
-
-        // var oVizProperties = {
-        //   plotArea: {
-        //     dataLabel: {
-        //       visible: true,
-        //     },
-        //     colorPalette: ["#ef6638"], // Custom color for the chart
-        //   },
-        // };
-        // debugger
-        // this.oSmartChart = this.getView().byId("smartErrorChart");
-        // this.oSmartChart.setVizProperties(oVizProperties);
       },
 
       onChangeMaterialType: function () {
@@ -140,6 +132,16 @@ sap.ui.define(
           submitButton: true,
           docSubmitButton: true,
         });
+        this.getView().getModel("graphStatsModel").setData({
+          visible: false,
+          totalCount: 0,
+          errorCount: 0,
+          noErrorCount: 0,
+          overFlowBar: false,
+          proceed: false,
+          proceedWithoutError: false,
+          cancel: false,
+        });
 
         this.oProgressIndicator.setPercentValue(0);
         this.oProgressIndicator.setDisplayValue(`${0}%`);
@@ -186,7 +188,7 @@ sap.ui.define(
         oModel.read(sPath, {
           filters: aFilters,
           success: function (res) {
-            debugger;
+            // debugger;
             this.sheetName = res;
             if (!res.results.length) {
               sap.m.MessageBox.error("Your Material Type contains Empty");
@@ -391,9 +393,7 @@ sap.ui.define(
         var sResponse = oEvent.getParameter("status");
         let error = oEvent.getParameters("response").response;
         if (sResponse === 201 || sResponse === 202 || sResponse === 204) {
-          sap.m.MessageToast.show(
-            `Files (${this.count}) uploaded Successfully`
-          );
+          MessageToast.show(`Files (${this.count}) uploaded Successfully`);
           // Call service for Errors
 
           const oWizard = this.getView().byId("idCreateMaterialWizard");
@@ -412,6 +412,7 @@ sap.ui.define(
                 },
               };
               chart.setVizProperties(oVizProperties);
+              chart.attachSelectData(this.onSelectChart, this);
             });
 
           let errorModel = this.getOwnerComponent().getModel(
@@ -421,7 +422,9 @@ sap.ui.define(
           errorModel.read("/ZI_QU_DG_Mara_Errorcount", {
             filters: [new sap.ui.model.Filter("Reqid", "EQ", this.reqid)],
             success: function (res) {
-              debugger;
+              // debugger;
+
+              const error = res?.results[0]?.Errors > 0;
               this.getView()
                 .getModel("graphStatsModel")
                 .setData({
@@ -430,6 +433,10 @@ sap.ui.define(
                     +res?.results[0]?.Errors + +res?.results[0]?.Without_Errors,
                   errorCount: res?.results[0]?.Errors,
                   noErrorCount: res?.results[0]?.Without_Errors,
+                  overFlowBar: true,
+                  proceed: !error,
+                  proceedWithoutError: error,
+                  cancel: true,
                 });
             }.bind(this),
             error: function (err) {
@@ -446,7 +453,7 @@ sap.ui.define(
           this.oProgressIndicator.setPercentValue(66);
           this.oProgressIndicator.setDisplayValue(`${66}%`);
         } else {
-          sap.m.MessageToast.show("Upload Failed" + error);
+          MessageToast.show("Upload Failed" + error);
           this.oTable.setBusy(false);
         }
       },
@@ -461,6 +468,15 @@ sap.ui.define(
         oEvent
           .getParameter("bindingParams")
           .filters.push(new sap.ui.model.Filter("Reqid", "EQ", this.reqid));
+
+        if (this.oErrorFilter) {
+          oEvent.getParameter("bindingParams").filters.push(this.oErrorFilter);
+        }
+      },
+      
+      onTableRefresh: function () {
+        this.oErrorFilter = null;
+        this.getView().byId("smartErrorTable").rebindTable();
       },
 
       formatRowHighlight: function (oValue) {
@@ -472,26 +488,94 @@ sap.ui.define(
       },
 
       onActionButtonPress: function (oEvent) {
+        // debugger
         var oButton = oEvent.getSource();
-        let objType = oEvent.getSource().getBindingContext().getObject();
+        let selectedTableData = oEvent
+          .getSource()
+          .getBindingContext()
+          .getObject();
+        const selData = new JSONModel(selectedTableData);
         this.byId("actionSheet").openBy(oButton);
+        this.byId("actionSheet").setModel(selData, "selData");
       },
 
-      onChartPress: function(oEvent) {
-        debugger
-        // Get the selected data point from the chart
-        var oSmartChart = this.byId("smartErrorChart");
-        var oSelectedData = oEvent.getParameters();
-        console.log("Selected Data from Chart: ", oSelectedData);
+      onSelectChart: function (oEvent) {
+        const type = oEvent.getParameters().data[0].data.measureNames;
+        const oTable = this.getView().byId("smartErrorTable");
 
-        // Assume that oSelectedData.data is the key or the dimension you want to filter by
-        var selectedDimension = oSelectedData.data; // Adjust this based on what you click on (e.g., category, series)
+        if (type === "Errors") {
+          this.oErrorFilter = new sap.ui.model.Filter({
+            path: "IsError",
+            operator: sap.ui.model.FilterOperator.EQ,
+            value1: true,
+          });
+        } else {
+          this.oErrorFilter = new sap.ui.model.Filter({
+            path: "IsError",
+            operator: sap.ui.model.FilterOperator.EQ,
+            value1: false,
+          });
+        }
+        oTable.rebindTable();
+      },
 
-        // Now filter the table based on the selected dimension
-        // this._filterTable(selectedDimension);
-    },
+      wizardCompletedHandler: function () {
+        var oWizard = this.getView().byId("idCreateMaterialWizard");
+        var oLastStep = this.getView().byId("idOverview");
 
-      wizardCompletedHandler: function () {},
+        // Optionally hide or reset steps as necessary
+        oLastStep.setValidated(false); // Ensure it's validated
+        oWizard.goToStep(oLastStep);
+      },
+
+      onCheckDuplicate: function (oEvent) {
+        this.oTable = this.getView().byId("smartErrorTable");
+
+        this.oTable.setBusy(true);
+        var rowData = oEvent.getSource().getModel("selData").getData();
+        const currentRecord = new JSONModel([rowData]);
+        this.getView().setModel(currentRecord, "currentRecord");
+
+        const oModel = this.getOwnerComponent().getModel(
+          "ZP_QU_DG_MARA_MASSREQ_BND"
+        );
+
+        var sFunctionName = "/CheckDuplicate";
+
+        var mParameters = {
+          SNo: rowData.SNo,
+          Reqid: this.reqid,
+          Matnr: "",
+        };
+
+        oModel.callFunction(sFunctionName, {
+          method: "POST",
+          urlParameters: mParameters,
+          success: function (oData, response) {
+            const duplicateModel = new JSONModel(oData.results);
+            this.getView().setModel(duplicateModel, "duplicateModel");
+
+            if (!this.duplicateFragment) {
+              this.duplicateFragment = sap.ui.xmlfragment(
+                "com.worksheet.worksheet.fragments.DuplicateCheck",
+                this
+              );
+              this.getView().addDependent(this.duplicateFragment);
+            }
+
+            this.duplicateFragment.open();
+            this.oTable.setBusy(false);
+          }.bind(this),
+          error: function (oError) {
+            MessageToast.show("Error calling function import", oError);
+            this.oTable.setBusy(false);
+          }.bind(this),
+        });
+      },
+
+      onCloseDuplicateCheck: function () {
+        this.duplicateFragment.close();
+      },
 
       handleWizardCancel: function () {},
     });

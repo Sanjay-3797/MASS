@@ -114,6 +114,7 @@
                         class="sapUiResponsivePadding--header sapUiResponsivePadding--content"
                         complete="wizardCompletedHandler"
                         renderMode="Page"
+                        showNextButton="false"
                     >
                         <WizardStep
                             id="idMaterialType"
@@ -254,7 +255,7 @@
                                         entitySet="ZI_QU_DG_Mara_Errorcount"
                                         header="Results"
                                         showFullScreenButton="true"
-                                        selectionMode="Multi"
+                                        selectionMode="Single"
                                         showChartTooltip="true"
                                         showDrillBreadcrumbs="false"
                                         showDetailsButton="false"
@@ -262,8 +263,6 @@
                                         showSemanticNavigationButton="true"
                                         height="40vh"
                                         beforeRebindChart="onBeforeRebindChart"
-                                        width="50%"
-                                        uiStateChange="onChartPress"
                                     />
                                 </HBox>
 
@@ -281,6 +280,17 @@
                                         beforeRebindTable="onBeforeRebindTable"
                                         requestAtLeastFields="IsError"
                                     >
+                                        <smartTable:customToolbar>
+                                            <OverflowToolbar
+                                                design="Transparent"
+                                            >
+                                                <ToolbarSpacer />
+                                                <Button
+                                                    icon="sap-icon://refresh"
+                                                    press="onTableRefresh"
+                                                />
+                                            </OverflowToolbar>
+                                        </smartTable:customToolbar>
                                         <smartTable:layoutData>
                                             <FlexItemData
                                                 growFactor="1"
@@ -338,15 +348,29 @@
                         </WizardStep>
                     </Wizard>
                 </f:content>
-                <!-- <footer>
-                    <OverflowToolbar>
+                <f:footer>
+                    <Toolbar visible="{graphStatsModel>/overFlowBar}">
                         <ToolbarSpacer />
                         <Button
-                            text="Cancel"
-                            press="handleWizardCancel"
+                            text="Proceed"
+                            press="onPressProceed"
+                            type="Emphasized"
+                            visible="{graphStatsModel>/proceed}"
                         />
-                    </OverflowToolbar>
-                </footer> -->
+                        <Button
+                            text="Proceed Without Errors"
+                            press="onPressProceedWihoutError"
+                            type="Emphasized"
+                            visible="{graphStatsModel>/proceedWithoutError}"
+                        />
+                        <Button
+                            text="Cancel"
+                            press="onPressCancel"
+                            type="Default"
+                            visible="{graphStatsModel>/cancel}"
+                        />
+                    </Toolbar>
+                </f:footer>
             </f:DynamicPage>
         </pages>
     </NavContainer>

@@ -13,7 +13,7 @@
     <Button
         text="Check for Duplicates"
         icon="sap-icon://duplicate"
-        press=""
+        press="onCheckDuplicate"
     />
     <Button
         text="Errors"
