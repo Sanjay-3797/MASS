@@ -473,7 +473,7 @@ sap.ui.define(
           oEvent.getParameter("bindingParams").filters.push(this.oErrorFilter);
         }
       },
-      
+
       onTableRefresh: function () {
         this.oErrorFilter = null;
         this.getView().byId("smartErrorTable").rebindTable();
@@ -552,6 +552,11 @@ sap.ui.define(
           method: "POST",
           urlParameters: mParameters,
           success: function (oData, response) {
+            if(oData.results.length === 0){
+              MessageToast.show("No Duplicates Available");
+              this.oTable.setBusy(false);
+              return;
+            }
             const duplicateModel = new JSONModel(oData.results);
             this.getView().setModel(duplicateModel, "duplicateModel");
 

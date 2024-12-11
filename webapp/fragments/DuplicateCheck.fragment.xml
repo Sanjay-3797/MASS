@@ -30,7 +30,7 @@
                 </headerToolbar>
                 <columns>
                     <Column>
-                        <Text text="Sl No" />
+                        <Text text="Material" />
                     </Column>
                     <Column>
                         <Text text="Material Description" />
@@ -45,7 +45,7 @@
                 <items>
                     <ColumnListItem>
                         <cells>
-                            <Text text="{currentRecord>SNo}" />
+                            <Text text="{currentRecord>Matnr}" />
                             <Text text="{currentRecord>maktx}" />
                             <Text text="{currentRecord>Mtart}" />
                             <Text text="{currentRecord>Mbrsh}" />
